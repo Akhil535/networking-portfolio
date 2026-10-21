@@ -44,13 +44,13 @@
     themeButton?.setAttribute('aria-label', `Switch to ${light ? 'dark' : 'light'} mode`);
     themeButton?.setAttribute('aria-pressed', String(light));
     if (themeLabel) themeLabel.textContent = light ? 'LIGHT' : 'DARK';
-    themeMeta?.setAttribute('content', light ? '#eaf2f5' : '#08111b');
+    themeMeta?.setAttribute('content', light ? '#f2f1f9' : '#090b18');
     if (!persist) return;
-    try { localStorage.setItem('akhil-network-portfolio-theme', theme); } catch (_) { /* Theme still works if storage is unavailable. */ }
+    try { localStorage.setItem('akhil-network-portfolio-theme-v5', theme); } catch (_) { /* Theme still works if storage is unavailable. */ }
   };
 
   try {
-    setTheme(localStorage.getItem('akhil-network-portfolio-theme') === 'light' ? 'light' : 'dark', false);
+    setTheme(localStorage.getItem('akhil-network-portfolio-theme-v5') === 'light' ? 'light' : 'dark', false);
   } catch (_) {
     setTheme('dark', false);
   }
@@ -137,5 +137,88 @@
     if (formNote) formNote.textContent = `Opening your email application to prepare a message for ${emailAddress}.`;
     window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
   });
+
+  const terminalCommand = document.getElementById('terminal-command');
+  const terminalOutput = document.getElementById('terminal-output');
+  const terminalToggle = document.getElementById('terminal-toggle');
+  const terminalNext = document.getElementById('terminal-next');
+  const terminalMode = document.getElementById('terminal-mode');
+  const profileDetails = [
+    { command: 'whoami', output: 'Akhil V. | Network & IT Support' },
+    { command: 'role --current', output: 'MRV Tech Computer | Network & IT Support | Jul 2025 — Present' },
+    { command: 'network --focus', output: 'DNS · DHCP · IP addressing · LAN/WAN · VPN support' },
+    { command: 'security --impact', output: 'ADHICS readiness | 50+ facility-level assessments supported' },
+    { command: 'experience --previous', output: 'Athena Global Education | LMS & Application Support | 2023–2025' },
+    { command: 'education --latest', output: 'MCA | Kerala University | First Class | 2022' },
+    { command: 'support --focus', output: 'Endpoint security · access control · patch management' }
+  ];
+
+  if (terminalCommand && terminalOutput) {
+    let terminalIndex = 0;
+    let terminalPaused = false;
+    let terminalTimer = 0;
+    let terminalRun = 0;
+    if (reducedMotion) {
+      if (terminalMode) terminalMode.textContent = 'MANUAL MODE';
+      if (terminalToggle) terminalToggle.hidden = true;
+    }
+
+    const clearTerminalTimer = () => {
+      window.clearTimeout(terminalTimer);
+      terminalTimer = 0;
+    };
+
+    const typeTerminalText = (element, value, speed, run, done) => {
+      let position = 0;
+      element.textContent = '';
+      const typeNext = () => {
+        if (run !== terminalRun || terminalPaused) return;
+        position += 1;
+        element.textContent = value.slice(0, position);
+        if (position < value.length) terminalTimer = window.setTimeout(typeNext, speed);
+        else done?.();
+      };
+      typeNext();
+    };
+
+    const showProfileDetail = (index, animate = true) => {
+      clearTerminalTimer();
+      const run = ++terminalRun;
+      terminalIndex = (index + profileDetails.length) % profileDetails.length;
+      const detail = profileDetails[terminalIndex];
+      if (reducedMotion || terminalPaused || !animate) {
+        terminalCommand.textContent = detail.command;
+        terminalOutput.textContent = detail.output;
+        if (!reducedMotion && !terminalPaused) terminalTimer = window.setTimeout(() => showProfileDetail(terminalIndex + 1), 2600);
+        return;
+      }
+      typeTerminalText(terminalCommand, detail.command, 18, run, () => {
+        terminalTimer = window.setTimeout(() => {
+          if (run === terminalRun) typeTerminalText(terminalOutput, detail.output, 13, run, () => {
+            terminalTimer = window.setTimeout(() => showProfileDetail(terminalIndex + 1), 2500);
+          });
+        }, 160);
+      });
+    };
+
+    showProfileDetail(0, !reducedMotion);
+    terminalToggle?.addEventListener('click', () => {
+      terminalPaused = !terminalPaused;
+      terminalToggle.textContent = terminalPaused ? '▶' : 'Ⅱ';
+      terminalToggle.setAttribute('aria-pressed', String(terminalPaused));
+      terminalToggle.setAttribute('aria-label', terminalPaused ? 'Resume automatic profile details' : 'Pause automatic profile details');
+      if (terminalMode) terminalMode.textContent = terminalPaused ? 'PAUSED' : 'AUTO ROTATING';
+      clearTerminalTimer();
+      terminalRun += 1;
+      const detail = profileDetails[terminalIndex];
+      if (terminalPaused) {
+        terminalCommand.textContent = detail.command;
+        terminalOutput.textContent = detail.output;
+      } else {
+        showProfileDetail(terminalIndex, !reducedMotion);
+      }
+    });
+    terminalNext?.addEventListener('click', () => showProfileDetail(terminalIndex + 1, !terminalPaused && !reducedMotion));
+  }
 
 })();
