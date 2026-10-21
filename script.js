@@ -16,87 +16,25 @@
     const hour = new Date().getHours();
     const timeGreeting = hour >= 5 && hour < 12 ? 'Good morning' : hour >= 12 && hour < 17 ? 'Good afternoon' : 'Good evening';
     if (greeting) greeting.textContent = `${timeGreeting}, Akhil.`;
-    if (reducedMotion) intro.querySelector('svg')?.pauseAnimations?.();
     let introClosed = false;
     let introTimer = 0;
-    let fallbackRouteStarted = false;
-    const fallbackMotions = [...intro.querySelectorAll('.intro-route-motion')];
-    let fallbackMotionsRemaining = 0;
-    const startFallbackRoute = () => {
-      if (fallbackRouteStarted || introClosed || intro.classList.contains('webgl-ready')) return;
-      window.clearTimeout(introTimer);
-      introTimer = 0;
-      fallbackRouteStarted = true;
-      const canAnimate = fallbackMotions.length && fallbackMotions.every((motion) => typeof motion.beginElement === 'function');
-      if (canAnimate) {
-        fallbackMotionsRemaining = fallbackMotions.length;
-        fallbackMotions.forEach((motion) => motion.beginElement());
-      } else {
-        introTimer = window.setTimeout(() => closeIntro(true), 1200);
-      }
-    };
-    fallbackMotions.forEach((motion) => motion.addEventListener('endEvent', () => {
-      if (fallbackRouteStarted && !intro.classList.contains('webgl-ready')) {
-        fallbackMotionsRemaining -= 1;
-        if (fallbackMotionsRemaining <= 0) {
-          intro.classList.add('globe-focused');
-          intro.dispatchEvent(new Event('intro:focus-ready'));
-        }
-      }
-    }));
-    const closeIntro = (focusSettled = false) => {
+    const closeIntro = () => {
       if (introClosed) return;
       introClosed = true;
       window.clearTimeout(introTimer);
-      const globe = intro.querySelector('.intro-globe')?.getBoundingClientRect();
-      const focus = intro.classList.contains('webgl-ready')
-        ? globe
-        : intro.querySelector('.focus-ring')?.getBoundingClientRect() || globe;
-      if (focus) {
-        const bounds = intro.getBoundingClientRect();
-        intro.style.setProperty('--portal-x', `${((focus.left + focus.width / 2 - bounds.left) / bounds.width) * 100}%`);
-        intro.style.setProperty('--portal-y', `${((focus.top + focus.height / 2 - bounds.top) / bounds.height) * 100}%`);
-      }
-      intro.dispatchEvent(new CustomEvent('intro:zoom', { detail: { focusSettled } }));
+      if (reducedMotion) intro.style.transitionDuration = '0.01ms';
       intro.classList.add('is-leaving');
       window.setTimeout(() => {
-        intro.dispatchEvent(new Event('intro:dispose'));
         intro.remove();
-      }, 1850);
+      }, reducedMotion ? 40 : 620);
     };
-    intro.addEventListener('intro:focus-ready', () => {
-      const label = intro.querySelector('.loading-status-label');
-      if (label) label.textContent = 'OPENING PORTFOLIO';
-      closeIntro(true);
-    }, { once: true });
-    if (!reducedMotion && window.createIntroGlobe) {
-      const loadLibrary = (url) => new Promise((resolve) => {
-        const script = document.createElement('script');
-        script.src = url;
-        script.async = true;
-        script.onload = () => resolve(true);
-        script.onerror = () => { script.remove(); resolve(false); };
-        document.head.append(script);
-      });
-      Promise.all([
-        loadLibrary('https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js'),
-        loadLibrary('https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js')
-      ]).then(([threeReady, gsapReady]) => {
-        if (!intro.isConnected || introClosed || fallbackRouteStarted) return;
-        const globe = threeReady && gsapReady ? window.createIntroGlobe(intro, window.gsap) : null;
-        if (!globe) {
-          startFallbackRoute();
-        } else {
-          window.clearTimeout(introTimer);
-        }
-      });
-      introTimer = window.setTimeout(() => startFallbackRoute(), 850);
-    } else {
-      introTimer = window.setTimeout(() => closeIntro(), 250);
-    }
+    introTimer = window.setTimeout(() => closeIntro(), reducedMotion ? 900 : 1850);
     enterIntro?.addEventListener('click', () => closeIntro());
     intro.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeIntro();
+      if (event.key === 'Escape') {
+        window.clearTimeout(introTimer);
+        closeIntro();
+      }
     });
   }
 
@@ -200,68 +138,4 @@
     window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
   });
 
-  const terminalCommand = document.getElementById('terminal-command');
-  const terminalOutput = document.getElementById('terminal-output');
-  const terminalToggle = document.getElementById('terminal-toggle');
-  const terminalNext = document.getElementById('terminal-next');
-  const profileDetails = [
-    { command: 'whoami', output: 'Akhil V. | IT Support & ADHICS-aligned' },
-    { command: 'experience --current', output: 'MRV Tech Computer | Network & IT Support | Jul 2025 — Present' },
-    { command: 'experience --previous', output: 'Athena Global Education | LMS & Application Support' },
-    { command: 'focus --network', output: 'DNS · DHCP · IP addressing · LAN/WAN · VPN support' },
-    { command: 'audit --impact', output: '50+ facility-level ADHICS assessments supported' },
-    { command: 'education --latest', output: 'MCA | Kerala University | 2022 | First Class' },
-    { command: 'status --availability', output: 'Available immediately | Abu Dhabi, UAE' }
-  ];
-  let terminalIndex = 0;
-  let terminalPaused = false;
-  let terminalTimer = 0;
-
-  const clearTerminalTimer = () => {
-    window.clearTimeout(terminalTimer);
-    terminalTimer = 0;
-  };
-
-  const typeTerminalText = (element, value, speed, done) => {
-    let position = 0;
-    element.textContent = '';
-    const typeNext = () => {
-      if (terminalPaused) return;
-      position += 1;
-      element.textContent = value.slice(0, position);
-      if (position < value.length) terminalTimer = window.setTimeout(typeNext, speed);
-      else if (done) done();
-    };
-    typeNext();
-  };
-
-  const showProfileDetail = (index) => {
-    if (!terminalCommand || !terminalOutput) return;
-    clearTerminalTimer();
-    terminalIndex = (index + profileDetails.length) % profileDetails.length;
-    const detail = profileDetails[terminalIndex];
-    if (reducedMotion || terminalPaused) {
-      terminalCommand.textContent = detail.command;
-      terminalOutput.textContent = detail.output;
-      return;
-    }
-    typeTerminalText(terminalCommand, detail.command, 23, () => {
-      terminalTimer = window.setTimeout(() => {
-        typeTerminalText(terminalOutput, detail.output, 17, () => {
-          terminalTimer = window.setTimeout(() => showProfileDetail(terminalIndex + 1), 2500);
-        });
-      }, 220);
-    });
-  };
-
-  if (reducedMotion && terminalToggle) terminalToggle.hidden = true;
-  showProfileDetail(0);
-  terminalToggle?.addEventListener('click', () => {
-    terminalPaused = !terminalPaused;
-    terminalToggle.textContent = terminalPaused ? '▶' : 'Ⅱ';
-    terminalToggle.setAttribute('aria-label', terminalPaused ? 'Resume automatic profile details' : 'Pause automatic profile details');
-    if (terminalPaused) showProfileDetail(terminalIndex);
-    else showProfileDetail(terminalIndex);
-  });
-  terminalNext?.addEventListener('click', () => showProfileDetail(terminalIndex + 1));
 })();

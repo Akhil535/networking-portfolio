@@ -11,10 +11,8 @@
   <title>Akhil V. — Network Operations &amp; IT Support</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <script src="intro-globe.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -46,54 +44,26 @@
   <section class="intro-loader" id="intro-loader" aria-label="Portfolio welcome screen">
     <div class="intro-scene">
       <div class="intro-grid" aria-hidden="true"></div>
-      <div class="intro-orbit-scene" aria-hidden="true">
-        <div class="intro-orbit orbit-one"><span></span></div>
-        <div class="intro-orbit orbit-two"><span></span></div>
-        <div class="intro-orbit orbit-three"><span></span></div>
-        <div class="intro-globe">
-          <canvas class="three-globe" aria-hidden="true"></canvas>
-          <div class="globe-surface">
-            <i class="globe-latitude latitude-one"></i><i class="globe-latitude latitude-two"></i><i class="globe-latitude latitude-three"></i>
-            <i class="globe-longitude longitude-one"></i><i class="globe-longitude longitude-two"></i><i class="globe-longitude longitude-three"></i>
-            <svg class="globe-routes" viewBox="0 0 300 300">
-              <defs><linearGradient id="globeLand" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#8af0d0"/><stop offset="1" stop-color="#317b93"/></linearGradient></defs>
-              <g class="globe-continent" aria-hidden="true">
-                <path d="M35 73 48 61 66 58 77 63 89 60 97 67 108 68 113 77 108 84 112 92 104 99 99 109 91 111 85 124 75 125 67 116 60 112 54 102 46 99 43 91 37 86Z"/>
-                <path d="M103 132 114 137 120 148 127 153 126 164 133 175 129 188 125 202 119 217 112 230 106 222 104 207 99 194 101 181 96 168 98 153Z"/>
-                <path d="M99 45 109 39 120 42 126 50 120 58 108 59 101 54Z"/>
-                <path d="M131 83 140 76 150 78 158 84 157 92 164 96 159 104 150 106 143 101 135 103 129 96Z"/>
-                <path d="M132 108 144 103 155 108 162 119 171 123 172 137 166 148 164 161 157 177 154 190 147 201 140 192 136 178 130 166 132 153 126 141 128 128Z"/>
-                <path d="M157 81 168 75 183 77 197 72 210 76 222 75 236 82 254 83 263 91 256 98 247 101 242 109 232 111 229 121 218 122 211 131 200 128 194 135 185 130 179 121 169 119 164 109 155 104 160 96Z"/>
-                <path d="M164 130 173 126 182 130 187 139 183 150 179 160 172 171 167 162 165 152 160 143Z"/>
-                <path d="M180 151 190 148 198 154 207 157 212 166 206 172 198 169 192 165 185 163Z"/>
-                <path d="M213 188 223 185 235 190 244 199 240 210 231 216 219 212 212 204Z"/>
-                <path d="M239 106 244 109 242 116 238 113Z"/>
-              </g>
-              <path class="globe-route-line" d="M111 98Q133 99 166 150"/>
-              <path class="globe-route-line" d="M187 145Q176 136 166 150"/>
-              <path class="globe-route-line" d="M201 166Q183 167 166 150"/>
-              <g class="globe-route-arrow route-arrow-london"><path d="M5 0 -3 -3 -1 0 -3 3Z"><animateMotion class="intro-route-motion" dur="1.18s" begin="indefinite" repeatCount="1" fill="freeze" rotate="auto" path="M111 98Q133 99 166 150"/></path></g>
-              <g class="globe-route-arrow route-arrow-mumbai"><path d="M5 0 -3 -3 -1 0 -3 3Z"><animateMotion class="intro-route-motion" dur="1.18s" begin="indefinite" repeatCount="1" fill="freeze" rotate="auto" path="M187 145Q176 136 166 150"/></path></g>
-              <g class="globe-route-arrow route-arrow-singapore"><path d="M5 0 -3 -3 -1 0 -3 3Z"><animateMotion class="intro-route-motion" dur="1.18s" begin="indefinite" repeatCount="1" fill="freeze" rotate="auto" path="M201 166Q183 167 166 150"/></path></g>
-              <circle class="globe-node" cx="111" cy="98" r="3.5"/><circle class="globe-node focus-node" cx="166" cy="150" r="5"/><circle class="globe-node" cx="187" cy="145" r="3.5"/><circle class="globe-node" cx="201" cy="166" r="3.5"/>
-              <circle class="focus-ring" cx="166" cy="150" r="10"/>
-              <text class="globe-location-label" x="92" y="91">LONDON</text><text class="globe-location-label focus-label" x="143" y="169">ABU DHABI</text><text class="globe-location-label" x="181" y="138">MUMBAI</text><text class="globe-location-label" x="197" y="181">SINGAPORE</text>
-            </svg>
-          </div>
-        </div>
-        <span class="orbit-caption caption-top">FOCUS <i>•</i> ABU DHABI, UAE</span>
-        <span class="orbit-caption caption-bottom">LONDON <i>→</i> ABU DHABI</span>
-      </div>
       <header class="intro-topbar">
         <a class="intro-brand" href="#top" aria-label="Akhil V. portfolio"><span class="intro-mark"><svg class="brand-logo" aria-hidden="true"><use href="#i-network-mark"/></svg></span><span><b>AKHIL V.</b><small>NETWORK / IT SUPPORT</small></span></a>
-        <div class="intro-location"><i></i><span>ABU DHABI, UAE</span><b>PORTFOLIO ONLINE</b></div>
+        <div class="intro-location"><i></i><span>ABU DHABI, UAE</span><b>NETWORK SUPPORT</b></div>
       </header>
       <div class="intro-content">
-        <p class="intro-kicker"><span class="live-dot"></span> NETWORK OPERATIONS <i>·</i> IT SUPPORT</p>
+        <p class="intro-kicker"><span class="live-dot"></span> NETWORK &amp; IT SUPPORT <i>·</i> ABU DHABI</p>
         <p class="intro-greeting" id="intro-greeting">Good day, Akhil.</p>
-        <h1>Welcome<br /><em>to my portfolio.</em></h1>
-        <p class="intro-description">Network operations <i>·</i> Secure IT support <i>·</i> Abu Dhabi, UAE</p>
+        <h1>Network &amp; IT<br /><em>Support.</em></h1>
+        <p class="intro-description">LAN / WAN <i>·</i> DNS / DHCP <i>·</i> VPN support</p>
         <div class="intro-connecting"><span class="loading-dot"></span><span>CONNECTING TO YOUR PORTFOLIO</span><span class="intro-connecting-line"><i></i></span></div>
+      </div>
+      <div class="intro-network-board" aria-label="Example troubleshooting path from user device through access and security to a service">
+        <div class="intro-board-heading"><span>NETWORK OPERATIONS</span><span>REFERENCE FLOW / 01</span></div>
+        <div class="intro-path" aria-hidden="true">
+          <div class="intro-hop"><i>01</i><b>CLIENT</b><small>Device &amp; IP</small></div><span class="intro-link"><i></i></span>
+          <div class="intro-hop"><i>02</i><b>ACCESS</b><small>LAN / Wi-Fi</small></div><span class="intro-link"><i></i></span>
+          <div class="intro-hop"><i>03</i><b>SECURITY</b><small>Firewall / VPN</small></div><span class="intro-link"><i></i></span>
+          <div class="intro-hop"><i>04</i><b>SERVICE</b><small>DNS / Apps</small></div>
+        </div>
+        <div class="intro-board-note"><span>METHOD</span> Check the link, trace the route, verify the service.</div>
       </div>
       <footer class="intro-bottom">
         <div class="intro-status"><span class="intro-status-brand">AKHIL V. <i>·</i> NETWORK / IT SUPPORT</span><span class="loading-status" role="status" aria-live="polite"><span class="loading-spinner" aria-hidden="true"></span><span class="loading-status-label">LOADING YOUR PORTFOLIO</span></span></div>
@@ -118,41 +88,25 @@
     <main id="main">
       <section class="hero section-wrap" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow hero-eyebrow"><span class="live-dot"></span> NETWORK OPERATIONS <i>•</i> ABU DHABI, UAE</p>
-          <h1 id="hero-title">People, devices,<br /><em>in sync.</em></h1>
-          <p class="hero-lede">I’m Akhil V., a Network &amp; IT Support Specialist. I troubleshoot the connections behind daily work and help keep systems secure, available, and easy to use.</p>
-          <div class="hero-actions"><a class="button button-bright" href="#projects">Explore my work <svg class="icon"><use href="#i-arrow"/></svg></a><a class="button button-glass" href="#contact">Let’s connect <span>↗</span></a></div>
+          <p class="eyebrow hero-eyebrow"><span class="live-dot"></span> NETWORK &amp; IT SUPPORT <i>•</i> ABU DHABI, UAE</p>
+          <h1 id="hero-title">Network &amp; IT<br /><em>Support</em></h1>
+          <p class="hero-lede">I’m Akhil V., a Network &amp; IT Support Specialist at MRV Tech Computer. I troubleshoot LAN/WAN, DNS/DHCP, VPN, endpoint, and application issues, then document the fix clearly.</p>
+          <div class="hero-actions"><a class="button button-bright" href="#projects">Selected work <svg class="icon"><use href="#i-arrow"/></svg></a><a class="button button-glass" href="#contact">Contact me <span>↗</span></a></div>
           <div class="hero-identity glass">
-            <img class="profile-avatar" src="assets/akhil-profile.jpg" alt="Portrait of Akhil V." />
-            <div><span class="mono-label">CURRENT PROFILE</span><b>Network &amp; IT Support Specialist</b><small>MRV Tech Computer <i>/</i> Jul 2025 — Present</small></div>
-            <span class="identity-live"><i></i> ACTIVE</span>
+            <img class="profile-avatar" src="assets/akhil-profile.jpg?v=8ff2ae7" alt="Portrait of Akhil V." />
+            <div><span class="mono-label">CURRENT ROLE</span><b>Network &amp; IT Support Specialist</b><small>MRV Tech Computer <i>/</i> Jul 2025 — Present</small></div>
           </div>
-          <section class="profile-terminal glass reveal" aria-label="Automatic profile terminal">
-            <div class="terminal-bar"><div class="terminal-title"><span class="terminal-lights" aria-hidden="true"><i></i><i></i><i></i></span><span>AKHIL_PROFILE.SYS</span></div><div class="terminal-controls"><span class="terminal-state"><i></i> CV DATA</span><button class="terminal-toggle" id="terminal-toggle" type="button" aria-label="Pause automatic profile details">Ⅱ</button></div></div>
-            <div class="terminal-screen"><p class="terminal-prompt"><span>akhil@network:~$</span> <b id="terminal-command">whoami</b></p><p class="terminal-output" id="terminal-output" aria-live="off">Akhil V. / IT Support &amp; ADHICS-aligned</p></div>
-            <div class="terminal-foot"><span>PROFILE SNAPSHOT <i>·</i> AUTO ROTATING</span><button id="terminal-next" type="button" aria-label="Show next profile detail">NEXT <svg class="icon"><use href="#i-arrow"/></svg></button></div>
-          </section>
+          <div class="hero-capabilities" aria-label="Technical focus areas"><span>LAN / WAN</span><span>DNS / DHCP</span><span>VPN support</span><span>Endpoint support</span></div>
           <a class="scroll-hint" href="#about"><span class="scroll-hint-line"></span> SCROLL TO EXPLORE</a>
         </div>
 
-        <div class="hero-art glass">
-          <div class="art-topline"><span><i class="live-dot"></i> GLOBAL NETWORK / LIVE VIEW</span><span class="art-code">TOPOLOGY 01.04</span></div>
-          <div class="map-caption"><b>A connected world,</b><span>one reliable hop at a time.</span></div>
-          <svg class="global-map" viewBox="0 0 760 470" role="img" aria-labelledby="map-title map-desc">
-            <title id="map-title">Two-dimensional global network topology</title>
-            <desc id="map-desc">Computer endpoints connect through routers and a firewall to global services, with routes between Abu Dhabi, London, Mumbai, and Singapore.</desc>
-            <defs>
-              <linearGradient id="routeGradient" x1="0" x2="1"><stop stop-color="#72f0d4"/><stop offset=".5" stop-color="#6faeff"/><stop offset="1" stop-color="#c8a5ff"/></linearGradient>
-              <radialGradient id="mapGlow"><stop stop-color="#5fe7d0" stop-opacity=".16"/><stop offset="1" stop-color="#5fe7d0" stop-opacity="0"/></radialGradient>
-              <pattern id="mapDots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="currentColor" opacity=".18"/></pattern>
-            </defs>
-            <rect x="12" y="20" width="736" height="430" rx="25" fill="url(#mapDots)" opacity=".45"/>
-            <ellipse class="map-orbit" cx="390" cy="238" rx="320" ry="155"/><ellipse class="map-orbit map-orbit-tilt" cx="390" cy="238" rx="300" ry="115"/>
-            <circle cx="390" cy="238" r="145" fill="url(#mapGlow)"/>
-            <g class="world-lines">
-              <path d="M58 167C153 76 213 102 291 153s141 38 207-12 123-42 201 18"/>
-              <path d="M53 306c98 73 158 34 230-4s132-52 198-1 146 56 217 3"/>
-              <path d="M76 233h610M144 123c75 44 83 127 21 210m484-206c-75 48-78 138-12 207M287 91c-21 79-18 207 8 289m202-290c26 86 19 204-3 287"/>
+        <div class="hero-art">
+          <div class="art-topline"><span>NETWORK OPERATIONS</span><span class="art-code">REFERENCE PATH 01</span></div>
+          <div class="map-caption"><b>Trace the connection path.</b><span>Endpoint → access → security → service.</span></div>
+          <svg class="network-topology" viewBox="0 0 760 470" role="img" aria-labelledby="topology-title topology-desc">
+            <title id="topology-title">Example network troubleshooting path</title>
+            <desc id="topology-desc">An endpoint connects through access switching, a firewall, and a core router to services, with example branches for DNS, VPN, and wireless access.</desc>
+            <g class="topology-routes">
               <path class="route route-main" d="M101 238H235L356 238H475L610 238"/>
               <path class="route route-branch" d="M356 238 431 142 566 107"/>
               <path class="route route-branch" d="M356 238 433 334 570 372"/>
@@ -168,20 +122,10 @@
               <g transform="translate(449 216)"><rect x="0" y="0" width="54" height="40" rx="9"/><path d="M12 12h.01M22 12h.01M32 12h.01M11 26h32M14 34h26M27 0V-10M19-10h16"/></g>
               <g transform="translate(585 210)"><path d="M10 42h34a13 13 0 0 0 0-26 19 19 0 0 0-36-2 14 14 0 0 0 2 28Z"/><path d="M17 29h22"/></g>
             </g>
-            <g class="map-labels"><text x="101" y="286">WORKSTATION</text><text x="235" y="286">EDGE ROUTER</text><text x="356" y="286">FIREWALL</text><text x="475" y="286">CORE ROUTER</text><text x="610" y="286">CLOUD SERVICE</text><text x="431" y="122">LONDON</text><text x="566" y="86">EUROPE</text><text x="433" y="365">MUMBAI</text><text x="570" y="404">SINGAPORE</text><text x="177" y="122">NEW YORK</text><text x="91" y="86">GLOBAL</text></g>
-            <g class="packets" aria-hidden="true"><circle r="4"><animateMotion dur="5s" repeatCount="indefinite" path="M101 238H235L356 238H475L610 238"/></circle><circle r="3" class="packet-two"><animateMotion dur="7s" begin="-2s" repeatCount="indefinite" path="M356 238 431 142 566 107"/></circle><circle r="3" class="packet-three"><animateMotion dur="6s" begin="-3s" repeatCount="indefinite" path="M235 238 177 142 91 107"/></circle></g>
+            <g class="map-labels"><text x="101" y="286">ENDPOINT</text><text x="235" y="286">ACCESS SWITCH</text><text x="356" y="286">FIREWALL</text><text x="475" y="286">CORE ROUTER</text><text x="610" y="286">SERVICE</text><text x="431" y="122">DNS / DHCP</text><text x="566" y="86">APP SERVICE</text><text x="433" y="365">VPN GATEWAY</text><text x="570" y="404">REMOTE ACCESS</text><text x="177" y="122">WIRELESS LAN</text><text x="91" y="86">CLIENT</text></g>
           </svg>
-          <div class="map-legend"><span><i class="legend-device"></i> DEVICE</span><span><i class="legend-router"></i> ROUTER</span><span><i class="legend-firewall"></i> FIREWALL</span><span><i class="legend-service"></i> SERVICE</span><b><i></i> ROUTE ACTIVE</b></div>
-          <div class="art-bottom"><span><svg class="icon"><use href="#i-pin"/></svg> ABU DHABI <i>↗</i> GLOBAL BACKBONE</span><span>TRACE <b>·</b> SECURE <b>·</b> CONNECT</span></div>
-          <div class="connection-status glass-inset" aria-label="Illustrative connection status, not live network telemetry">
-            <div class="status-heading"><span><i class="live-dot"></i> CONNECTION STATUS</span><small>ILLUSTRATIVE FLOW · NOT LIVE TELEMETRY</small></div>
-            <div class="status-stages">
-              <div class="status-stage"><span class="status-led"></span><small>DEVICE LINK</small><b>UP</b></div><span class="status-bridge" aria-hidden="true"></span>
-              <div class="status-stage stage-blue"><span class="status-led"></span><small>ROUTER</small><b>READY</b></div><span class="status-bridge bridge-blue" aria-hidden="true"></span>
-              <div class="status-stage stage-lilac"><span class="status-led"></span><small>FIREWALL</small><b>POLICY</b></div><span class="status-bridge bridge-lilac" aria-hidden="true"></span>
-              <div class="status-stage stage-green"><span class="status-led"></span><small>SERVICE</small><b>REACHABLE</b></div>
-            </div>
-          </div>
+          <div class="map-legend"><span><i class="legend-device"></i> CLIENT DEVICE</span><span><i class="legend-router"></i> SWITCH / ROUTER</span><span><i class="legend-firewall"></i> FIREWALL</span><span><i class="legend-service"></i> INTERNAL SERVICE</span></div>
+          <div class="art-bottom"><span><svg class="icon"><use href="#i-pin"/></svg> ABU DHABI <i>↗</i> NETWORK OPERATIONS</span><span>ACCESS <b>·</b> SECURITY <b>·</b> SUPPORT</span></div>
         </div>
       </section>
 
